@@ -129,7 +129,6 @@ class Profile extends Component {
     show = (dimmer) => () => this.setState({ dimmer, open: true })
     close = () => this.setState({ open: false })
 
-
     handleInputChange = (event) => {
         event.persist()
         this.setState(() => {
