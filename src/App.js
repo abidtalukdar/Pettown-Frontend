@@ -5,7 +5,6 @@ import Navbar from './containers/Navbar'
 import Login from './components/Login'
 import Divider from './components/Divider'
 import SignUp from './components/SignUp'
-// import MyProfile from './components/MyProfile'
 import Profile from './components/Profile';
 import { BrowserRouter as Router, Route } from "react-router-dom"; 
 
@@ -94,6 +93,18 @@ class App extends React.Component {
             })
         })
     }
+
+    // handlePostComment = (commentData) => {
+    //     console.log(commentData)
+    //     fetch("http://localhost:3000/comments", {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(commentData)
+    //     })
+    //     .then(r => r.json())
+    // }
 
     handleUpdateCurrentUser = (user) => {
         this.setState({

@@ -157,7 +157,6 @@ class Profile extends Component {
         this.setState({ open: false })
     }
 
-
     render() {
         const { open, dimmer, caption } = this.state
         const { username, name, bio, profile_picture} = this.props.currentUser
@@ -191,10 +190,10 @@ class Profile extends Component {
                                                 <a className="left floated" style={{marginLeft: '1em' }}><Icon name='user'/>{this.props.followees.length} Following</a>
                                             </Card.Content>
                                             <button className="ui button" style={{backgroundColor: "palevioletred", color: "white", border: "1px solid white"}} onClick={this.show('blurring')}>
-                                                <Icon name='add' color='white'/><Icon name='photo' color='white'/>
+                                                <Icon name='add' /><Icon name='photo' />
                                             </button>
                                             <Modal size="small" dimmer={dimmer} open={open} onClose={this.close} closeIcon>
-                                                <Modal.Header>Select a Photo</Modal.Header>
+                                                <Modal.Header>Upload to Pettown</Modal.Header>
                                                     <Form onSubmit={this.handleSubmit}>
                                                         <Segment stacked>
                                                             <input type="file" placeholder="Image" name="image" onChange={this.handleFileInputChange} style={{fontFamily: "Arial", fontSize: "13px", marginBottom: "1em"}} />

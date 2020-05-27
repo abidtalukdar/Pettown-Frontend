@@ -85,7 +85,7 @@ class Home extends Component {
                                             <a className="left floated" style={{marginLeft: '1em' }}><Icon name='user'/>{this.props.followees.length} Following</a>
                                         </Card.Content>
                                         <button className="ui button" style={{backgroundColor: "palevioletred", color: "white", border: "1px solid white"}} onClick={this.show('blurring')}>
-                                            <Icon name='add' color='white'/><Icon name='photo' color='white'/>
+                                            <Icon name='add'/><Icon name='photo'/>
                                         </button>
                                         <Modal size="small" dimmer={dimmer} open={open} onClose={this.close} closeIcon>
                                             <Modal.Header>Select a Photo</Modal.Header>
