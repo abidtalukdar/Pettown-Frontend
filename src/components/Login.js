@@ -45,7 +45,7 @@ class Login extends React.Component {
         <div id="login" className="form-container">
             <Grid textAlign='center' style={{ height: '80vh' }} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <h1>Log-in to PetTown</h1>
+                    <h1 style={{fontFamily: "Bungee Shade", color: "palevioletred"}}>Login to PetTown</h1>
                     <Form size='large' onSubmit={this.handleSubmit}>
                         <Segment stacked>
                         <Form.Input 

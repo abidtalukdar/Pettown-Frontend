@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ImagesContainer from '../containers/ImagesContainer'
+import SuggestedFolloweeItem from './SuggestedFolloweeItem'
 import {BrowserRouter as Route, Redirect, Link} from "react-router-dom";
 import {
+    Feed,
     Form,
     Card,
     Icon,
@@ -53,6 +55,12 @@ class Home extends Component {
         this.setState({ open: false })
     }
 
+    renderSuggestedFollowees = () => {
+        return this.props.suggestedFollowees.map(suggestedFollowee => {
+            return <SuggestedFolloweeItem key={suggestedFollowee.id} suggestedFollowee={suggestedFollowee}/>
+        })
+    }
+
     render() {
         const { open, dimmer, caption } = this.state
         const { username, name, bio, profile_picture} = this.props.currentUser
@@ -63,10 +71,10 @@ class Home extends Component {
                         <Grid container stackable>
                             <Grid.Row>
                                 <Grid.Column width={8}>
-                                    <Header as='h3' style={{ fontSize: '1em' }}>
+                                    <Header as='h3' style={{ fontSize: '2em', fontFamily: "Bungee Shade", color: "palevioletred" }}>
                                         Image Feed
                                     </Header>
-                                    <ImagesContainer images={this.props.followeeImages} currentUser={this.props.currentUser} />
+                                    <ImagesContainer images={this.props.followeeImages} currentUser={this.props.currentUser} handleDeleteImage={this.props.handleDeleteImage} />
                                 </Grid.Column>
                                 <Grid.Column floated='right' width={6}>
                                     <Card>
@@ -88,7 +96,7 @@ class Home extends Component {
                                             <Icon name='add'/><Icon name='photo'/>
                                         </button>
                                         <Modal size="small" dimmer={dimmer} open={open} onClose={this.close} closeIcon>
-                                            <Modal.Header>Select a Photo</Modal.Header>
+                                            <Modal.Header>Upload to Pettown</Modal.Header>
                                                 <Form onSubmit={this.handleSubmit}>
                                                     <Segment stacked>
                                                         <input type="file" placeholder="Image" name="image" onChange={this.handleFileInputChange} style={{fontFamily: "Arial", fontSize: "13px", marginBottom: "1em"}} />
@@ -105,6 +113,16 @@ class Home extends Component {
                                                 </Form>
                                         </Modal>
                                     </Card>
+
+                                    <Card>
+                                        <Card.Content>
+                                            <Card.Header>Pets you may Know</Card.Header>
+                                        </Card.Content>
+                                        <Card.Content>
+                                            {this.renderSuggestedFollowees()}
+                                        </Card.Content>
+                                    </Card>
+
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>

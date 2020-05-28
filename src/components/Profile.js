@@ -9,8 +9,11 @@ import {
     Grid,
     Header,
     Image,
+    Feed,
     Segment
 } from 'semantic-ui-react'
+import SuggestedFolloweeItem from './SuggestedFolloweeItem'
+
 
 class Profile extends Component {
     
@@ -19,7 +22,7 @@ class Profile extends Component {
         userImages: [],
         followers: [],
         followees: [],
-        followButton: null,
+        followButton: false,
         open: false,
         image: {},
         caption: ""
@@ -59,10 +62,13 @@ class Profile extends Component {
                         followers: object
                     })
                     this.state.followers.map(follower => {
-                        if (follower.id === this.props.currentUser.id) {
-                            this.setState({followButton: true})
+                        const currentUserFollowing = this.state.followers.filter(follower => {
+                            return follower.id === this.props.currentUser.id
+                        })
+                        if (currentUserFollowing.length === 0) {
+                            this.setState({followButton: false}) 
                         } else {
-                            this.setState({followButton: false})
+                            this.setState({followButton: true}) 
                         }
                     })
                 })
@@ -88,6 +94,7 @@ class Profile extends Component {
                 .then(r => r.json())
                 .then(() => {
                     this.setState({followButton: false})
+                    this.props.handleUnfollow()
                     return fetch(`http://localhost:3000/followers/${userId}`)
                                 .then(r => r.json())
                                 .then(object => {
@@ -112,6 +119,7 @@ class Profile extends Component {
                 .then(r => r.json())
                 .then(() => {
                     this.setState({followButton: true})
+                    this.props.handleNewFollowee()
                     return fetch(`http://localhost:3000/followers/${userId}`)
                                 .then(r => r.json())
                                 .then(object => {
@@ -168,13 +176,13 @@ class Profile extends Component {
                             <Grid container stackable>
                                 <Grid.Row>
                                     <Grid.Column width={8}>
-                                        <Header as='h3' style={{ fontSize: '1em' }}>
+                                        <Header as='h3' style={{ fontSize: '2em', fontFamily: "Bungee Shade", color: "palevioletred" }}>
                                             Your Uploads
                                         </Header>
-                                        <ImagesContainer images={this.props.userImages} currentUser={this.props.currentUser} />
+                                        <ImagesContainer images={this.props.userImages} currentUser={this.props.currentUser} handleDeleteImage={this.props.handleDeleteImage} />
                                     </Grid.Column>
                                     <Grid.Column floated='right' width={6}>
-                                        <Card>
+                                        <Card style={{position: "sticky", top: 0}}>
                                             <Image src={profile_picture} style={{borderRadius: "8px"}} />
                                             <Card.Content>
                                                 <Card.Header>{name}</Card.Header>
@@ -219,8 +227,8 @@ class Profile extends Component {
                                 <Grid container stackable>
                                     <Grid.Row>
                                         <Grid.Column width={8}>
-                                            <Header as='h3' style={{ fontSize: '1em' }}>
-                                                Your Uploads
+                                            <Header as='h3' style={{ fontSize: '2em', fontFamily: "Bungee Shade", color: "palevioletred" }}>
+                                            {this.state.user.username}'s Uploads
                                             </Header>
                                             <ImagesContainer images={this.state.userImages} currentUser={this.props.currentUser} />
                                         </Grid.Column>

@@ -18,7 +18,7 @@ code {
 .logo {
     font-family: 'Bungee Shade', cursive;
     position: left;
-
+    /* font-family: Arial, Helvetica, sans-serif; */
     margin-left: 50px;
     top: 50%;
     margin-top: -50px;
@@ -57,3 +57,9 @@ button:hover{
 }
 
 
+/* .avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  } */

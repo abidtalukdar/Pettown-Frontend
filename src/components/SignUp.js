@@ -52,7 +52,7 @@ class SignUp extends React.Component {
                 }
                 return r.json()
             })
-            .then(user => { // console.log(user) add logic here to make sure user gets re rendered to SignUp page if invalid sign up
+            .then(user => {
                 this.props.history.push("/login")
             })
             .catch(console.error)
@@ -68,13 +68,9 @@ class SignUp extends React.Component {
             {this.props.currentUser === "pending" ? null : <Redirect to="/profile" />}
                 <Grid textAlign='center' style={{ height: '80vh' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <h1>Sign Up for PetTown</h1>
+                        <h1 style={{fontFamily: "Bungee Shade", color: "palevioletred"}}>Join PetTown</h1>
                         <Form size='large' onSubmit={this.handleSubmit}>
                             <Segment stacked>
-                            {/* <Button as="label" htmlFor="file" type="button">
-                                Choose Profile Picture
-                            </Button>
-                            <input id="file" type="file" style={{ display: "none" }} name="profile_picture" onChange={this.handleFileInputChange} /> */}
                             <input type="file" placeholder="Profile Picture" name="profile_picture" onChange={this.handleFileInputChange} style={{fontFamily: "Arial", fontSize: "13px", marginBottom: "1em"}}/>
                             <Form.Input 
                                 fluid icon='user' 

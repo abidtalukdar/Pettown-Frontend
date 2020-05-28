@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Divider } from 'semantic-ui-react';
+import { Divider, Icon } from 'semantic-ui-react';
 
 class Comment extends Component {
 
@@ -21,7 +21,7 @@ class Comment extends Component {
     render() {
         return (
             <div>
-                <div style={{ textAlign: "left" }}>
+                <div>
                     <img src={this.state.user.profile_picture} className="ui avatar image" alt="profile" /> 
                     <strong>
                         <Link to={{
@@ -30,6 +30,10 @@ class Comment extends Component {
                             }}> {this.state.user.username} 
                         </Link> 
                     </strong> {this.props.comment.comment}
+                    {this.props.currentUser.id === this.props.comment.user_id ?
+                    <button className="ui tiny button" style={{float: "right", color: "white", backgroundColor: "palevioletred"}} onClick={() => this.props.handleDeleteComment(this.props.comment.id)}><strong>X</strong></button>
+                    :
+                    null}
                 </div>
                 <Divider/>
             </div>
